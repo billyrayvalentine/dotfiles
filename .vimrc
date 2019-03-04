@@ -37,7 +37,7 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 
 " Other indents
 autocmd BufRead *.c set cindent
-autocmd FileType c setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType c setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -54,3 +54,6 @@ call matchadd('ColorColumn', '\%80v', 100)
 " Wrap Markdown 
 autocmd BufRead,BufNewFile *.md set filetype=Markdown
 au Filetype Markdown setlocal wrap textwidth=80
+
+" Don't expand tab for Makefiles
+autocmd FileType make setlocal noexpandtab
