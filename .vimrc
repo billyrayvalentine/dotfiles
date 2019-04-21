@@ -38,7 +38,6 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 " Other indents
 autocmd BufRead *.c set cindent
 autocmd FileType c setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -57,3 +56,9 @@ au Filetype Markdown setlocal wrap textwidth=80
 
 " Don't expand tab for Makefiles
 autocmd FileType make setlocal noexpandtab
+
+nnoremap <F2> :!make <CR>
+
+" https://www.youtube.com/watch?v=XA2WjJbmmoM
+set path+=**
+set wildmenu
