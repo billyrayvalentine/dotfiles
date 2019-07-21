@@ -35,8 +35,8 @@ bindsym $mod+F3 exec firefox -ProfileManager
 bindsym XF86MonBrightnessUp exec xbacklight +10 
 bindsym XF86MonBrightnessDown exec xbacklight -10 
 
-bindcode 123 exec "amixer sset Master,0 1+"
-bindcode 122 exec "amixer sset Master,0 1-"
+bindcode 123 exec "amixer sset Master,0 1000+"
+bindcode 122 exec "amixer sset Master,0 1000-"
 bindcode 121 exec "amixer sset Master,0 toggle"
 
 # kill focused window
