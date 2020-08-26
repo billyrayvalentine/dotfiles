@@ -15,6 +15,7 @@ zstyle ':completion:*' cache-path ~/.zshcach
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.history
+export NODE_PATH=/usr/local/lib/node_modules
 setopt hist_ignore_dups # ignore same commands run more than once
 setopt appendhistory    # don't overwrite history
 setopt auto_pushd # cd - TAB history
@@ -71,6 +72,8 @@ alias be='bundle2.0 exec'
 alias scpme="echo -n $HOSTNAME; echo -n ':'; readlink -f"
 alias gdb="gdb -q"
 alias tf="terraform"
+
+alias mkpyvenv="python3 -m venv venv && source venv/bin/activate && rehash"
 
 # What else! 
 export EDITOR=vim
