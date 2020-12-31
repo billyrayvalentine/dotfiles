@@ -4,6 +4,8 @@ autoload -U compinit; compinit
 #load the zmv module
 autoload zmv
 
+autoload zcalc
+
 #use menu completions
 zstyle ':completion:*' menu select=1
 
@@ -21,7 +23,8 @@ setopt appendhistory    # don't overwrite history
 setopt auto_pushd # cd - TAB history
 
 #Set my prompt up
-export PS1="%m:%/% > "
+#export PS1="%m:%/% > "
+export PS1="%F{blue}%B%m%b%f:%2~%B>%b"
 export PS2="> "
 
 #set up $PATH 
