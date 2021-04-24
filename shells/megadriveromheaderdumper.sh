@@ -5,7 +5,31 @@
 # convert numbers to little-endian if a single byte is processed at a time
 # which has been shown here for the checksum but i turned to od for the rest 
 # where hex is required.
-
+# All in just 27 commands! (-_Q)
+#
+# Example
+# 
+# ./megadriveromheaderdumper.sh xenocrisis_gold_v1_0_0.bin
+# 
+# SEGA MEGA DRIVE 
+# (C)BMAP 2019.OCT
+# XENO CRISIS                                     
+# XENO CRISIS                                     
+# GM BMAP-001-00
+# 5E6A
+# J64             
+# 00000000
+# 003fffff
+# 00ff0000
+# 00ffffff
+#   
+# 2020
+# 20202020
+# 20202020
+#             
+#                                         
+# JUE
+             
 usage() {
     echo "megadriveromheaderdumper.sh  <FILENAME>";
 }
@@ -32,8 +56,8 @@ od "$1" -j 0x1AC -N4 -An --endian=big -tx | sed "s/^ //" # RAM Address range end
 hexdump "$1" -s 0x1B0 -n2 -e '2 "%_p""\n"'  # External / Backup RAM "RA" for yes "  " for no (ASCII)
 
 od "$1" -j 0x1B2 -N2 -An --endian=big -tx2 | sed "s/^ //" # Backup RAM type (HEX)
-od "$1" -j 0x1B4 -N4 -An --endian=big -tx | sed "s/^ //" # Backup RAM start address (HEX)
-od "$1" -j 0x1B6 -N4 -An --endian=big -tx | sed "s/^ //" # Backup RAM end address (HEX)
+od "$1" -j 0x1B4 -N4 -An --endian=big -tx  | sed "s/^ //" # Backup RAM start address (HEX)
+od "$1" -j 0x1B6 -N4 -An --endian=big -tx  | sed "s/^ //" # Backup RAM end address (HEX)
 
 hexdump "$1" -s 0x1BC -n12 -e '12 "%_p""\n"' # Modem Support (ASCII)
 hexdump "$1" -s 0x1C8 -n40 -e '40 "%_p""\n"' # Memo          (ASCII)
