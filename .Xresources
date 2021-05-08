@@ -3,5 +3,6 @@ XTerm.*.Foreground: white
 xterm*vt100*geometry: 100x40
 XTerm*locale: UTF-8
 xterm*faceName: Liberation Mono:size=12:antialias=true
-xterm*font: 7x13
 XTerm*ScrollBar: false
+XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono
+XTerm*faceSize: 14
