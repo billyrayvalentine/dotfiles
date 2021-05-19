@@ -44,6 +44,7 @@ autocmd FileType make setlocal noexpandtab
 
 " assembler
 au BufRead,BufNewFile *.asm set filetype=asm68k
+autocmd FileType asm68k setlocal shiftwidth=2 softtabstop=4 tabstop=4
 
 " Other indents
 autocmd BufRead *.c set cindent
@@ -53,9 +54,9 @@ autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-
 " Delete trailing line endings 
-autocmd BufWritePre *.{groovy,json,py,c} %s/\s\+$//e
+" autocmd BufWritePre *.{groovy,json,py,c,asm} %s/\s\+$//e
+autocmd FileType c,cpp,java,php,python,Markdown,asm68k autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Show a purple marker if we get to 80 chars (keep inside of this)
 highlight ColorColumn ctermbg=magenta
