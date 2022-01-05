@@ -40,6 +40,15 @@ bindsym $mod+Shift+Return exec firefox -ProfileManager
 #bindcode 121 exec "amixer sset Master,0 toggle"
 bindsym XF86AudioMute exec "pactl -- set-sink-mute @DEFAULT_SINK@ toggle"
 
+# List Spotify dbus methods 
+#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Introspectable.Introspect
+bindsym XF86AudioPlay exec "dbus-send --print-reply \
+    --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioNext exec "dbus-send --print-reply \
+    --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+bindsym XF86AudioPrev exec "dbus-send --print-reply \
+    --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 
 # kill focused window
 bindsym $mod+Shift+q kill
