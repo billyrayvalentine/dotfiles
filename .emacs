@@ -29,3 +29,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil))
+
+;; Pimp up the mode line
+(set-face-foreground 'mode-line "white")
+(set-face-background 'mode-line "dark blue")
+(set-face-background 'mode-line-inactive "purple")
