@@ -39,6 +39,5 @@
 (setq make-backup-files nil)
 
 ;; Make meta-o other window
-;; unset a key
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'other-window)
