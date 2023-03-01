@@ -39,5 +39,15 @@
 (setq make-backup-files nil)
 
 ;; Make meta-o other window
+;; unset a key
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'other-window)
+
+;; use y/n over yes/no
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; disable auto save #YUCK#
+(setq auto-save-default nil)
+
+;; enable save space  in file like vim
+(save-place-mode 1) 
