@@ -22,6 +22,25 @@ setopt hist_ignore_dups # ignore same commands run more than once
 setopt appendhistory    # don't overwrite history
 setopt auto_pushd # cd - TAB history
 
+DIRSTACKSIZE=${DIRSTACKSIZE:-20}
+dirstack_file=${dirstack_file:-${HOME}/.zdirs}
+
+if [[ -f ${dirstack_file} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
+  dirstack=( ${(f)"$(< $dirstack_file)"} )
+  # "cd -" won't work after login by just setting $OLDPWD, so
+  [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+fi
+
+autoload -U add-zsh-hook
+add-zsh-hook chpwd chpwd_dirpersist
+chpwd_dirpersist() {
+  if (( $DIRSTACKSIZE <= 0 )) || [[ -z $dirstack_file ]]; then return; fi
+  local -ax my_stack
+  my_stack=( ${PWD} ${dirstack} )
+  builtin print -l ${(u)my_stack} >! ${dirstack_file}
+}
+
+
 #Set my prompt up
 #export PS1="%m:%/% > "
 export PS1="%F{blue}%B%m%b%f:%2~%B>%b"
@@ -39,7 +58,8 @@ path=(
 	/usr/local/bin
 	/usr/local/sbin
 	/usr/games
-    /opt/novell/zenworks/bin
+	/opt/novell/zenworks/bin
+	~/.local/share/coursier/bin
 	.
 	$path
 )
@@ -75,11 +95,12 @@ alias be='bundle2.0 exec'
 alias scpme="echo -n $HOSTNAME; echo -n ':'; readlink -f"
 alias gdb="gdb -q"
 alias tf="terraform"
+alias ema="emacs"
 
 alias mkpyvenv="python3 -m venv venv && source venv/bin/activate && rehash"
 
 # What else! 
-export EDITOR=vim
+export EDITOR=emacs
 
 # use this so that ? and ?? works nicely in ipython
 export PAGER="/usr/bin/less -R"
