@@ -3,22 +3,19 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
-;; (use-package scala-mode                                                                                                    
-;;  :interpreter                                                                                                              
-;;    ("scala" . scala-mode))                                                                                                 
-;; (package-initialize)                                                                                                       
-
 ;; Enable https://github.com/purcell/emacs-hcl-mode                                                                           
 (require 'hcl-mode)
+
+(use-package vterm
+    :ensure t)
 
 ;; disable menu                                                                                                               
 (menu-bar-mode -1)
 (custom-set-faces
- ;; custom-set-faces was added by Custom.                                                                                     
- ;; If you edit it by hand, you could mess it up, so be careful.                                                              
- ;; Your init file should contain only one such instance.                                                                     
- ;; If there is more than one, they won't work right.                                                                         
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:foreground "brightcyan"))))
  '(font-lock-function-name-face ((t (:foreground "brightcyan" :weight bold))))
  '(font-lock-keyword-face ((t (:foreground "brightyellow"))))
@@ -30,18 +27,15 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.                                                                                 
- ;; If you edit it by hand, you could mess it up, so be careful.                                                              
- ;; Your init file should contain only one such instance.                                                                     
- ;; If there is more than one, they won't work right.                                                                         
- '(delete-selection-mode nil)
- '(package-selected-packages '(scala-mode)))
 
 ;; Pimp up the mode line                                                                                                      
 (set-face-foreground 'mode-line "white")
 (set-face-background 'mode-line "dark blue")
-(set-face-background 'mode-line-inactive "purple")
+(set-face-background 'mode-line-inactive "brightblack")
+
+;; Taken from https://github.com/abrochard/emacs-config/blob/2928a15d3352edc711fb954570c60e0ac6153840/configuration.org#L734
+(set-face-background 'mode-line "#4692d5")
+(set-face-background 'mode-line-inactive "#212020")
 
 ;; Disable auto backups e.g. file~                                                                                            
 (setq make-backup-files nil)
@@ -50,6 +44,9 @@
 ;; unset a key                                                                                                                
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'other-window)
+
+;; unset mail command which is uneeded
+(global-unset-key (kbd "C-x m"))
 
 ;; use y/n over yes/no                                                                                                        
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -60,17 +57,4 @@
 ;; enable save space  in file like vim                                                                                        
 (save-place-mode 1)
 
-
-;; Use generic-mode to create a simple mode for Gherkin                                                                       
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Generic-Modes.html                                               
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html                                         
-(require 'generic-x)
-(define-generic-mode 'gherkin-generic
-  '("#")
-  '("Feature" "Rule" "Example" "Scenario" "Given" "When" "Then" "And" "But" "Background" "Scenario Outline" "Scenario Templat\
-e" "Examples" "Scenarios")
-  '(("\\@" . 'font-lock-builtin))
-  '("\\.feature$")
-  nil
-  "A generic mode for Gherkin"
-)
+(setq-default indent-tabs-mode nil)
