@@ -3,11 +3,16 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 ;; Enable https://github.com/purcell/emacs-hcl-mode                                                                           
 (require 'hcl-mode)
 
 (use-package vterm
     :ensure t)
+
+(load (expand-file-name "~/quicklisp/slime-helper.el"))                           
+(setq inferior-lisp-program "sbcl")      
+
 
 ;; disable menu                                                                                                               
 (menu-bar-mode -1)
@@ -21,7 +26,16 @@
  '(font-lock-keyword-face ((t (:foreground "brightyellow"))))
  '(font-lock-string-face ((t (:foreground "brightmagenta"))))
  '(font-lock-type-face ((t (:foreground "green" :weight bold))))
- '(font-lock-variable-name-face ((t (:foreground "white")))))
+ '(font-lock-variable-name-face ((t (:foreground "white"))))
+
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "white"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "spring green"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "deep sky blue"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "green"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "sienna1"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "orchid"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "violet"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "sienna1")))))
 
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
@@ -58,3 +72,10 @@
 (save-place-mode 1)
 
 (setq-default indent-tabs-mode nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(delete-selection-mode nil)
+ '(package-selected-packages '(rainbow-delimiters vterm slime)))
