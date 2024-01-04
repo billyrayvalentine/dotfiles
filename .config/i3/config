@@ -177,7 +177,7 @@ bar {
         #output LVDS1
 }
 
-exec --no-startup-id xsetroot -solid "#656565"
+exec --no-startup-id xsetroot -solid "#0054B1"
 focus_follows_mouse no
 
 for_window [class="PhoPlay.py"] floating enable, border normal
@@ -191,3 +191,7 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+
+default_border normal
+gaps inner 6
+smart_gaps on
