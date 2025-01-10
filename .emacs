@@ -3,16 +3,14 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
 ;; Enable https://github.com/purcell/emacs-hcl-mode                                                                           
 (require 'hcl-mode)
+(require 'rust-mode)
 
 (use-package vterm
     :ensure t)
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))                           
-(setq inferior-lisp-program "sbcl")      
-
+(setq inferior-lisp-program "/usr/bin/sbcl")
 
 ;; disable menu                                                                                                               
 (menu-bar-mode -1)
@@ -26,21 +24,20 @@
  '(font-lock-keyword-face ((t (:foreground "brightyellow"))))
  '(font-lock-string-face ((t (:foreground "brightmagenta"))))
  '(font-lock-type-face ((t (:foreground "green" :weight bold))))
- '(font-lock-variable-name-face ((t (:foreground "white"))))
-
- '(rainbow-delimiters-depth-1-face ((t (:foreground "white"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "spring green"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "deep sky blue"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "green"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "sienna1"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "orchid"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "violet"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "sienna1")))))
+ '(font-lock-variable-name-face ((t (:foreground "white")))))
 
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(delete-selection-mode nil)
+ '(package-selected-packages
+   '(rust-mode pyvenv rainbow-delimiters rainbow-delimiters\  ## slime scala-mode)))
 
 ;; Pimp up the mode line                                                                                                      
 (set-face-foreground 'mode-line "white")
@@ -59,6 +56,9 @@
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'other-window)
 
+;; Set vterm to a key
+(global-set-key (kbd "C-c v") 'vterm)
+
 ;; unset mail command which is uneeded
 (global-unset-key (kbd "C-x m"))
 
@@ -71,11 +71,26 @@
 ;; enable save space  in file like vim                                                                                        
 (save-place-mode 1)
 
+
+;; Use generic-mode to create a simple mode for Gherkin                                                                       
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Generic-Modes.html                                               
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html
+
 (setq-default indent-tabs-mode nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(delete-selection-mode nil)
- '(package-selected-packages '(rainbow-delimiters vterm slime)))
+
+(require 'generic-x)
+(define-generic-mode 'gherkin-generic
+  '("#")
+  '("Feature" "Rule" "Example" "Scenario" "Given" "When" "Then" "And" "But" "Background" "Scenario Outline" "Scenario Templat\
+e" "Examples" "Scenarios")
+  '(("\\@" . 'font-lock-builtin))
+  '("\\.feature$")
+  nil
+  "A generic mode for Gherkin"
+)
+
+(setq python-shell-interpreter "python3.11")
+
+;; Emacs 29 - use tree sitter modes instead of old major modes
+(setq major-mode-remap-alist
+      '((js-json-mode . json-ts-mode)))

@@ -28,16 +28,19 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xterm
-bindsym $mod+F3 exec firefox -ProfileManager
+#bindsym $mod+Return exec xterm
+bindsym $mod+Return exec alacritty16
+
+# lock
+bindsym $mod+Shift+l exec i3lock
 
 # Screen brighness
-bindsym XF86MonBrightnessUp exec xbacklight +10 
-bindsym XF86MonBrightnessDown exec xbacklight -10 
+#bindsym XF86MonBrightnessUp exec xbacklight +10 
+#bindsym XF86MonBrightnessDown exec xbacklight -10 
 
-bindcode 123 exec "amixer sset Master,0 1000+"
-bindcode 122 exec "amixer sset Master,0 1000-"
-bindcode 121 exec "amixer sset Master,0 toggle"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -161,7 +164,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        output eDP
+	#output eDP
 }
 
 #exec --no-startup-id xsetroot -solid "#656565"
