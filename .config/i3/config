@@ -29,14 +29,14 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec xterm
-bindsym $mod+Return exec alacritty16
+bindsym $mod+Return exec xterm
 
 # lock
 bindsym $mod+Shift+l exec i3lock
 
 # Screen brighness
-#bindsym XF86MonBrightnessUp exec xbacklight +10 
-#bindsym XF86MonBrightnessDown exec xbacklight -10 
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+ 
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%- 
 
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
