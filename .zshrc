@@ -131,7 +131,7 @@ LS_COLORS='di=01;37:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:
 stty -ixon
 
 # get all those lovely colours test with tput color
-#export TERM=xterm-256color	
+export TERM=xterm-256color	
 
 # set the xterm title
 precmd () {print -Pn "\e]0;%n@%m: %~\a"}

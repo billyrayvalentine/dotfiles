@@ -58,7 +58,7 @@
 
 ;; Set vterm to a key
 (global-set-key (kbd "C-c v") 'vterm)
-
+(setq vterm-max-scrollback 3000)
 ;; unset mail command which is uneeded
 (global-unset-key (kbd "C-x m"))
 
@@ -94,3 +94,4 @@ e" "Examples" "Scenarios")
 ;; Emacs 29 - use tree sitter modes instead of old major modes
 (setq major-mode-remap-alist
       '((js-json-mode . json-ts-mode)))
+
