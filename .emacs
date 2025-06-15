@@ -95,7 +95,4 @@ e" "Examples" "Scenarios")
 (setq major-mode-remap-alist
       '((js-json-mode . json-ts-mode)))
 
-;; ASM mode tab-with = 4 not 8
-(add-hook 'asm-mode-hook
-          (lambda ()
-            (setq tab-width 4)))
+(require 'm68k-mode)
