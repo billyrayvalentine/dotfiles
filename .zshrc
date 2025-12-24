@@ -21,6 +21,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 setopt hist_ignore_dups # ignore same commands run more than once
 setopt appendhistory    # don't overwrite history
 setopt auto_pushd # cd - TAB history
+setopt HIST_IGNORE_SPACE
 
 DIRSTACKSIZE=${DIRSTACKSIZE:-20}
 dirstack_file=${dirstack_file:-${HOME}/.zdirs}
