@@ -1,4 +1,4 @@
-;; Load stuff in here                                                                                                         
+;; Load stuff in here
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
 (require 'package)
@@ -95,4 +95,5 @@ e" "Examples" "Scenarios")
 (setq major-mode-remap-alist
       '((js-json-mode . json-ts-mode)))
 
-(require 'm68k-mode)
+(setq visible-cursor nil)
+
