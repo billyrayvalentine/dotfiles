@@ -2,19 +2,25 @@ icons_format = "{icon}"
 
 [theme]
 #theme = "solarized-dark"
+theme = "plain"
 [theme.overrides]
 #idle_bg = "#123456"
 #idle_fg = "#abcdef"
 
 [icons]
-#icons = "awesome4"
+#icons = "awesome6"
+#icons = "emoji"
 [icons.overrides]
-bat = ["|E|", "|_|", "|=|", "|F|"]
-bat_charging = "|^| "
+#bat = ["|E|", "|_|", "|=|", "|F|"]
+bat_charging = "CHR"
+
+[[block]]
+block = "net"
+format = " $icon {$signal_strength $ssid $frequency|Wired connection} "
 
 [[block]]
 block = "battery"
-
+format = " $icon $percentage $time "
 
 [[block]]
 block = "cpu"
@@ -23,10 +29,10 @@ warning_cpu = 50
 critical_cpu = 90
 
 
-[[block]]
-block = "memory"
-format = " $icon $mem_total_used_percents.eng(w:2) "
-format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+# [[block]]
+# block = "memory"
+# format = " $icon $mem_total_used_percents.eng(w:2) "
+# format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "sound"
@@ -37,4 +43,4 @@ cmd = "pavucontrol"
 [[block]]
 block = "time"
 interval = 5
-format = " $timestamp.datetime(f:'%a %d/%m %R') "
+format = " $timestamp.datetime(f:'%Y-%m-%d %H:%M') "
