@@ -6,6 +6,7 @@
 ;; Enable https://github.com/purcell/emacs-hcl-mode
 (require 'hcl-mode)
 (require 'rust-mode)
+(require 'm68k-mode)
 (use-package vterm
     :ensure t)
 
@@ -50,6 +51,9 @@
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'other-window)
 
+;; Make ctl-c s swap windows
+(global-set-key (kbd "C-c s") 'window-swap-states)
+
 ;; Set vterm to a key
 (global-set-key (kbd "C-c v") 'vterm)
 (setq vterm-max-scrollback 3000)
@@ -75,6 +79,9 @@
 ;; Emacs 29 - use tree sitter modes instead of old major modes
 (setq major-mode-remap-alist
       '((js-json-mode . json-ts-mode)))
+
+;; Refresh dired
+(setq dired-do-revert-buffer t)
 
 ;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 ;; (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
